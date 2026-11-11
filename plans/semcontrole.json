@@ -1,0 +1,234 @@
+{
+ "slug": "semcontrole",
+ "track_file": "SEM CONTROLE (Super Slowed) [iUpEsSb0tWI].mp3",
+ "window": "/home/hakuza/reel-workdir/windows/semcontrole_19s.mp3",
+ "phase": 0.139,
+ "tempo": 99.38,
+ "cut_count": 20,
+ "total_frames": 540,
+ "length_s": 18.0,
+ "video_adds": [
+  {
+   "type": "video",
+   "assetId": "1dbe673f2a",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 36,
+   "sourceStartFromInSeconds": 4.5,
+   "decibelAdjustment": -60,
+   "width": 1166,
+   "height": 2074,
+   "left": -43,
+   "top": -77
+  },
+  {
+   "type": "video",
+   "assetId": "f8fa989cdb",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 18,
+   "sourceStartFromInSeconds": 11.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "6d4063287d",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 36,
+   "sourceStartFromInSeconds": 8.7,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "49ab467452",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 18,
+   "sourceStartFromInSeconds": 2.0,
+   "decibelAdjustment": -60,
+   "fit": "cover"
+  },
+  {
+   "type": "video",
+   "assetId": "12ef94b147",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 18,
+   "sourceStartFromInSeconds": 0.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "190fd81c60",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 36,
+   "sourceStartFromInSeconds": 2.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "fb128c2271",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 18,
+   "sourceStartFromInSeconds": 5.5,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "cc7ab74195",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 36,
+   "sourceStartFromInSeconds": 8.2,
+   "decibelAdjustment": -60,
+   "fit": "cover"
+  },
+  {
+   "type": "video",
+   "assetId": "c9f53905f7",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 18,
+   "sourceStartFromInSeconds": 7.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "5a3fb456ee",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 18,
+   "sourceStartFromInSeconds": 9.7,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "51a7daab59",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 36,
+   "sourceStartFromInSeconds": 3.5,
+   "decibelAdjustment": -60,
+   "fit": "cover"
+  },
+  {
+   "type": "video",
+   "assetId": "e5c1c7a5ae",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 18,
+   "sourceStartFromInSeconds": 11.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "a6fd9873d6",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 36,
+   "sourceStartFromInSeconds": 2.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "1dbe673f2a",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 36,
+   "sourceStartFromInSeconds": 7.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "1dbe673f2a",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 36,
+   "sourceStartFromInSeconds": 4.5,
+   "decibelAdjustment": -60,
+   "width": 1166,
+   "height": 2074,
+   "left": -43,
+   "top": -77
+  },
+  {
+   "type": "video",
+   "assetId": "f8fa989cdb",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 18,
+   "sourceStartFromInSeconds": 11.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "6d4063287d",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 36,
+   "sourceStartFromInSeconds": 8.7,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "49ab467452",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 18,
+   "sourceStartFromInSeconds": 2.0,
+   "decibelAdjustment": -60,
+   "fit": "cover"
+  },
+  {
+   "type": "video",
+   "assetId": "12ef94b147",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 18,
+   "sourceStartFromInSeconds": 0.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "190fd81c60",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 36,
+   "sourceStartFromInSeconds": 2.0,
+   "decibelAdjustment": -60
+  }
+ ],
+ "audio_add": {
+  "type": "audio",
+  "fromFrame": 0,
+  "durationInFrames": 540,
+  "sourceStartFromInSeconds": 0.139,
+  "audioFadeOut": 0.4
+ },
+ "boundaries_s": [
+  0.0,
+  1.207,
+  1.811,
+  3.019,
+  3.622,
+  4.226,
+  5.434,
+  6.037,
+  7.245,
+  7.849,
+  8.452,
+  9.66,
+  10.264,
+  11.471,
+  12.679,
+  13.886,
+  14.49,
+  15.697,
+  16.301,
+  16.905,
+  18.112
+ ]
+}

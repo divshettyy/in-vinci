@@ -1,0 +1,203 @@
+{
+ "slug": "funkpower",
+ "track_file": "yatashi & LLOYDS PH - FUNK POWER (MEGA SLOWED TIKTOK 2026) [3G9Oun892Xo].mp3",
+ "window": "/home/hakuza/reel-workdir/windows/funkpower_19s.mp3",
+ "phase": 0.163,
+ "tempo": 86.14,
+ "cut_count": 17,
+ "total_frames": 546,
+ "length_s": 18.2,
+ "video_adds": [
+  {
+   "type": "video",
+   "assetId": "1dbe673f2a",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 42,
+   "sourceStartFromInSeconds": 4.5,
+   "decibelAdjustment": -60,
+   "width": 1166,
+   "height": 2074,
+   "left": -43,
+   "top": -77
+  },
+  {
+   "type": "video",
+   "assetId": "f8fa989cdb",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 21,
+   "sourceStartFromInSeconds": 11.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "6d4063287d",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 42,
+   "sourceStartFromInSeconds": 8.7,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "49ab467452",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 21,
+   "sourceStartFromInSeconds": 2.0,
+   "decibelAdjustment": -60,
+   "fit": "cover"
+  },
+  {
+   "type": "video",
+   "assetId": "12ef94b147",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 21,
+   "sourceStartFromInSeconds": 0.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "190fd81c60",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 42,
+   "sourceStartFromInSeconds": 2.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "fb128c2271",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 21,
+   "sourceStartFromInSeconds": 5.5,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "cc7ab74195",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 42,
+   "sourceStartFromInSeconds": 8.2,
+   "decibelAdjustment": -60,
+   "fit": "cover"
+  },
+  {
+   "type": "video",
+   "assetId": "c9f53905f7",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 21,
+   "sourceStartFromInSeconds": 7.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "5a3fb456ee",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 21,
+   "sourceStartFromInSeconds": 9.7,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "51a7daab59",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 42,
+   "sourceStartFromInSeconds": 3.5,
+   "decibelAdjustment": -60,
+   "fit": "cover"
+  },
+  {
+   "type": "video",
+   "assetId": "e5c1c7a5ae",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 21,
+   "sourceStartFromInSeconds": 11.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "a6fd9873d6",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 42,
+   "sourceStartFromInSeconds": 2.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "1dbe673f2a",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 42,
+   "sourceStartFromInSeconds": 7.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "1dbe673f2a",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 42,
+   "sourceStartFromInSeconds": 4.5,
+   "decibelAdjustment": -60,
+   "width": 1166,
+   "height": 2074,
+   "left": -43,
+   "top": -77
+  },
+  {
+   "type": "video",
+   "assetId": "f8fa989cdb",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 21,
+   "sourceStartFromInSeconds": 11.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "6d4063287d",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 42,
+   "sourceStartFromInSeconds": 8.7,
+   "decibelAdjustment": -60
+  }
+ ],
+ "audio_add": {
+  "type": "audio",
+  "fromFrame": 0,
+  "durationInFrames": 546,
+  "sourceStartFromInSeconds": 0.163,
+  "audioFadeOut": 0.4
+ },
+ "boundaries_s": [
+  0.0,
+  1.393,
+  2.09,
+  3.483,
+  4.179,
+  4.876,
+  6.269,
+  6.966,
+  8.359,
+  9.056,
+  9.752,
+  11.145,
+  11.842,
+  13.235,
+  14.628,
+  16.021,
+  16.718,
+  18.111
+ ]
+}

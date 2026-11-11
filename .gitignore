@@ -1,0 +1,6 @@
+# secrets
+cookie.txt
+# raw source clips (re-downloadable via download_clips.sh)
+clips/
+# scratch render output
+out/

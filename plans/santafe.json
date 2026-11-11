@@ -1,0 +1,183 @@
+{
+ "slug": "santafe",
+ "track_file": "MONTAGEM SANTA FE 2 (Slowed) - qaraqshy [Co4uPqjBF60].mp3",
+ "window": "/home/hakuza/reel-workdir/windows/santafe_19s.mp3",
+ "phase": 0.348,
+ "tempo": 73.83,
+ "cut_count": 15,
+ "total_frames": 535,
+ "length_s": 17.83,
+ "video_adds": [
+  {
+   "type": "video",
+   "assetId": "1dbe673f2a",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 49,
+   "sourceStartFromInSeconds": 4.5,
+   "decibelAdjustment": -60,
+   "width": 1166,
+   "height": 2074,
+   "left": -43,
+   "top": -77
+  },
+  {
+   "type": "video",
+   "assetId": "f8fa989cdb",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 24,
+   "sourceStartFromInSeconds": 11.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "6d4063287d",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 49,
+   "sourceStartFromInSeconds": 8.7,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "49ab467452",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 24,
+   "sourceStartFromInSeconds": 2.0,
+   "decibelAdjustment": -60,
+   "fit": "cover"
+  },
+  {
+   "type": "video",
+   "assetId": "12ef94b147",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 24,
+   "sourceStartFromInSeconds": 0.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "190fd81c60",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 49,
+   "sourceStartFromInSeconds": 2.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "fb128c2271",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 24,
+   "sourceStartFromInSeconds": 5.5,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "cc7ab74195",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 49,
+   "sourceStartFromInSeconds": 8.2,
+   "decibelAdjustment": -60,
+   "fit": "cover"
+  },
+  {
+   "type": "video",
+   "assetId": "c9f53905f7",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 24,
+   "sourceStartFromInSeconds": 7.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "5a3fb456ee",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 24,
+   "sourceStartFromInSeconds": 9.7,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "51a7daab59",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 49,
+   "sourceStartFromInSeconds": 3.5,
+   "decibelAdjustment": -60,
+   "fit": "cover"
+  },
+  {
+   "type": "video",
+   "assetId": "e5c1c7a5ae",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 24,
+   "sourceStartFromInSeconds": 11.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "a6fd9873d6",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 49,
+   "sourceStartFromInSeconds": 2.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "1dbe673f2a",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 49,
+   "sourceStartFromInSeconds": 7.0,
+   "decibelAdjustment": -60
+  },
+  {
+   "type": "video",
+   "assetId": "f8fa989cdb",
+   "trackId": "V1",
+   "alignTo": "track-end",
+   "durationInFrames": 24,
+   "sourceStartFromInSeconds": 4.5,
+   "decibelAdjustment": -60,
+   "width": 1166,
+   "height": 2074,
+   "left": -43,
+   "top": -77
+  }
+ ],
+ "audio_add": {
+  "type": "audio",
+  "fromFrame": 0,
+  "durationInFrames": 535,
+  "sourceStartFromInSeconds": 0.348,
+  "audioFadeOut": 0.4
+ },
+ "boundaries_s": [
+  0.0,
+  1.625,
+  2.438,
+  4.063,
+  4.876,
+  5.689,
+  7.314,
+  8.127,
+  9.752,
+  10.565,
+  11.377,
+  13.003,
+  13.816,
+  15.441,
+  17.066,
+  17.879
+ ]
+}
