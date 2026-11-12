@@ -1,4 +1,4 @@
-# reel-workdir — beat-synced phonk moto reel maker
+# in-vinci — beat-synced phonk moto reel maker
 
 Pipeline that turns slowed-phonk tracks + vertical moto source clips into
 9:16 Instagram reels with cuts aligned to detected beats.
