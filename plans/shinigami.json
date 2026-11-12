@@ -1,7 +1,7 @@
 {
  "slug": "shinigami",
  "track_file": "Draven Godrics - Shinigami (Slowed) [QJ8NSJcJZEg].mp3",
- "window": "/home/hakuza/reel-workdir/windows/shinigami_19s.mp3",
+ "window": "windows/shinigami_19s.mp3",
  "phase": 0.139,
  "tempo": 86.14,
  "cut_count": 17,
