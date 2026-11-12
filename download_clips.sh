@@ -1,17 +1,20 @@
 #!/usr/bin/env bash
-# Pull the 17 Night Reel source clips from ChatCut into ~/reel-workdir/clips/.
+# Pull the 17 Night Reel source clips from ChatCut into this repo's clips/ dir.
+# Paths are resolved relative to this script, so it works from any checkout
+# location (the repo was renamed from reel-workdir -> in-vinci).
 #
 # ONE-TIME SETUP (your cookie never leaves this machine):
 #   1. Open ChatCut in your browser, signed in.
 #   2. DevTools (F12) -> Network tab -> click any request to api.chatcut.io
 #      -> Request Headers -> copy the WHOLE value of the `cookie:` header.
-#   3. Paste it into ~/reel-workdir/cookie.txt  (single line), e.g.:
-#        echo 'PASTE_COOKIE_HERE' > ~/reel-workdir/cookie.txt
-#   4. bash ~/reel-workdir/download_clips.sh
+#   3. Paste it into cookie.txt next to this script (single line), e.g.:
+#        echo 'PASTE_COOKIE_HERE' > cookie.txt
+#   4. bash download_clips.sh
 #
 set -uo pipefail
-OUT="$HOME/reel-workdir/clips"
-COOKIE_FILE="$HOME/reel-workdir/cookie.txt"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+OUT="$SCRIPT_DIR/clips"
+COOKIE_FILE="$SCRIPT_DIR/cookie.txt"
 PID="ab2dbed8-4041-47d6-97bb-0ec03cc36068"
 BASE="https://api.chatcut.io/api/assets"
 mkdir -p "$OUT"

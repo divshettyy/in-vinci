@@ -27,3 +27,5 @@ bash download_clips.sh
 
 ## Status
 8 tracks planned (santafe, diabolica, funkcriminal, funkpower, semcontrole, shinigami, zora, addiction); 7 rendered. `clips/` must be re-downloaded before a fresh render.
+
+> Note: beat detection (librosa) and the final render (ChatCut composite) are run via external tooling — only their data outputs (`beats/`, `plans/`, `windows/`, `clip_analysis/`) are committed here. `download_clips.sh` is the only committed script. See `CHANGELOG.md` for history.
