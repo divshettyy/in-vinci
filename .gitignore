@@ -1,6 +1,19 @@
 # secrets
 cookie.txt
+.env
+.env.*
+!.env.example
+
 # raw source clips (re-downloadable via download_clips.sh)
 clips/
 # scratch render output
 out/
+
+# python / tooling cache
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# OS / editor noise
+.DS_Store
+*.swp

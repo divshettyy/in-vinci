@@ -50,7 +50,7 @@ ok=0; fail=0
 for name in "${!M[@]}"; do
   id="${M[$name]}"
   url="$BASE/$id/download?projectId=$PID"
-  code=$(curl -sS -b "chatcut=dummy" -H "cookie: $COOKIE" -w '%{http_code}' \
+  code=$(curl -sS -H "cookie: $COOKIE" -w '%{http_code}' \
               -o "$OUT/$name" "$url" 2>/dev/null || echo 000)
   sz=$(stat -c%s "$OUT/$name" 2>/dev/null || echo 0)
   if [[ "$code" == "200" && "$sz" -gt 200000 ]]; then
