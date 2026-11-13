@@ -1,0 +1,61 @@
+name: validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate-json:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate plan/beat JSON is well-formed and has required keys
+        run: |
+          python3 - <<'PY'
+          import json, sys, pathlib
+
+          errors = []
+
+          def load(path):
+              try:
+                  return json.loads(path.read_text())
+              except Exception as e:
+                  errors.append(f"{path}: invalid JSON ({e})")
+                  return None
+
+          for path in sorted(pathlib.Path("plans").glob("*.json")):
+              data = load(path)
+              if data is None:
+                  continue
+              if path.name.endswith("_beats.json"):
+                  for key in ("tempo", "beats"):
+                      if key not in data:
+                          errors.append(f"{path}: missing '{key}'")
+              else:
+                  for key in ("slug", "video_adds"):
+                      if key not in data:
+                          errors.append(f"{path}: missing '{key}'")
+                  for add in data.get("video_adds", []):
+                      for key in ("assetId", "durationInFrames"):
+                          if key not in add:
+                              errors.append(f"{path}: video_adds entry missing '{key}'")
+
+          for path in sorted(pathlib.Path("beats").glob("*.json")):
+              data = load(path)
+              if data is None:
+                  continue
+              for key in ("tempo", "beats"):
+                  if key not in data:
+                      errors.append(f"{path}: missing '{key}'")
+
+          clips_path = pathlib.Path("clip_analysis/clips.json")
+          if clips_path.exists():
+              load(clips_path)
+
+          if errors:
+              print("JSON validation failed:")
+              for e in errors:
+                  print(f"  - {e}")
+              sys.exit(1)
+          print("All plan/beat JSON files parsed and have required keys.")
+          PY
