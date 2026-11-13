@@ -2,15 +2,7 @@
 cookie.txt
 .env
 .env.*
-
-# python
-venv/
-.venv/
-__pycache__/
-*.pyc
-
-# node
-node_modules/
+!.env.example
 
 # raw source clips (re-downloadable via download_clips.sh)
 clips/
@@ -18,10 +10,24 @@ clips/
 # scratch render output
 out/
 
+# python
+venv/
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# node
+node_modules/
+
 # logs / state / cache
 *.log
 .cache/
 *.cache
+
+# OS / editor noise
+.DS_Store
+*.swp
 
 # large sample/working media (keep committed samples explicit; ignore scratch dumps)
 *.mp4.tmp
