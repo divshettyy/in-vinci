@@ -10,13 +10,26 @@ Pipeline that turns slowed-phonk tracks + vertical moto source clips into
 4. **Cut plan** — `plans/<slug>.json`: beat-aligned `video_adds` (asset id, in-point, duration in frames, 9:16 crop/offset, audio muted to -60dB).
 5. **Render** — plan + track window composited to the final reel.
 
+## Requirements
+- `bash`, `curl` — for `download_clips.sh` (the only committed script)
+- `ffmpeg` — audio window export / final render muxing
+- Python 3 + `librosa` — beat detection (external step, not committed here)
+- `opencv-python` + `scenedetect` — source clip profiling (external step; see `clip_analysis/clips.json` output, produced with `have_cv2`/`have_scenedetect` flags)
+- A ChatCut account + an active browser session (for the cookie used by `download_clips.sh`, and for the final composite render)
+
 ## Source clips
 Not committed (`clips/` is gitignored). Re-fetch from ChatCut:
 ```bash
 echo 'PASTE_CHATCUT_COOKIE' > cookie.txt   # one line, never committed
 bash download_clips.sh
 ```
-17 asset UUIDs + project id live in `download_clips.sh`.
+17 asset UUIDs + project id live in `download_clips.sh`. The cookie is your
+raw ChatCut session cookie (see the script's header comment for how to copy
+it from DevTools); it is read from `cookie.txt` at runtime and is never
+hardcoded or committed — `cookie.txt` is gitignored.
+
+No other secrets or environment variables are required by anything in this
+repo.
 
 ## Layout
 - `plans/` — per-track cut plans + beat maps
