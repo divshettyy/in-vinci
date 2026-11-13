@@ -1,7 +1,7 @@
 {
  "slug": "zora",
  "track_file": "MONTAGEM ZORA (Slowed) [m5XbV5HfiLw].mp3",
- "window": "/home/hakuza/reel-workdir/windows/zora_19s.mp3",
+ "window": "windows/zora_19s.mp3",
  "phase": 0.093,
  "tempo": 103.36,
  "cut_count": 21,
