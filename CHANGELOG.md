@@ -11,7 +11,27 @@ All notable changes to in-vinci (beat-synced phonk moto reel maker).
   present, so a malformed plan/beat-map fails fast on push/PR.
 - README rewritten for public/portfolio readability: pipeline diagram,
   features, tech stack, prerequisites, verified install/run steps, config,
-  layout, media/copyright note, and roadmap.
+  layout, media/copyright note, and roadmap. Also documents the actual
+  runtime deps (bash/curl, ffmpeg, Python + librosa, opencv-python +
+  scenedetect) and clarifies that `download_clips.sh` reads the cookie from
+  `cookie.txt` at runtime rather than ever hardcoding it, and that no other
+  secrets/env vars are required.
+
+### Security
+- Audited for hardcoded secrets/API keys, unsafe shell quoting, `eval` use,
+  and command injection — none found. `download_clips.sh` has no user-supplied
+  filenames/URLs reaching the shell (the clip name -> UUID map is hardcoded)
+  and all variable expansions are quoted. Also audited full git history
+  (`git log -p`) for leaked credentials/cookies/tokens — none found, only
+  placeholder text (`PASTE_CHATCUT_COOKIE`).
+- `download_clips.sh`: removed a redundant/stale `-b "chatcut=dummy"` curl
+  flag that was sent alongside the real `-H "cookie: ..."` header — harmless
+  but confusing, and risked a duplicate/malformed `Cookie` header.
+- `.gitignore` hardened for public release: added `.env`/`.env.*`
+  (`!.env.example` kept trackable), `venv/`/`.venv/`, `__pycache__/`/`*.pyc`,
+  `.ipynb_checkpoints/`, `node_modules/`, `*.log`/cache patterns, and
+  `.DS_Store`/`*.swp` editor noise, on top of the existing
+  `cookie.txt`/`clips/`/`out/` entries.
 
 ### Fixed
 - `download_clips.sh` now resolves `clips/` and `cookie.txt` relative to the
@@ -19,14 +39,19 @@ All notable changes to in-vinci (beat-synced phonk moto reel maker).
   the repo was renamed from `reel-workdir` to `in-vinci`, the old paths made the
   script download into a non-existent directory; it now writes into the repo's
   own `clips/` regardless of checkout location.
-- Removed the hardcoded local absolute path
-  (`/home/hakuza/reel-workdir/windows/...`) that had leaked into the
-  `"window"` field of 7 `plans/*.json` files (addiction, funkcriminal,
-  funkpower, santafe, semcontrole, shinigami, zora) — now a repo-relative
-  `windows/<slug>_19s.mp3` path, same value, no machine/username exposure.
-- `.gitignore` hardened for public release: added `.env*`, `venv/`/`.venv/`,
-  `__pycache__/`, `node_modules/`, `*.log`, and cache/temp-media patterns, on
-  top of the existing `cookie.txt`/`clips/`/`out/` entries.
+- **Stale `window` path in `plans/*.json`**: the same `reel-workdir` rename left
+  every rendered plan's `window` field pointing at the now-nonexistent
+  `/home/hakuza/reel-workdir/windows/<slug>_19s.mp3` — a leaked local absolute
+  path (machine/username exposure) as well as a broken reference. Any
+  render/composite tool that reads a plan and opens `window` to pull in the
+  track's audio hook would fail to find the file on a fresh checkout. Rewrote
+  all 7 (`addiction`, `funkcriminal`, `funkpower`, `santafe`, `semcontrole`,
+  `shinigami`, `zora`) to the repo-relative `windows/<slug>_19s.mp3`, which is
+  exactly where the file already lives — verified present for each before
+  rewriting, and every plan file still parses as valid JSON after the change.
+  `diabolica.json` (the one planned-but-not-rendered track) has no
+  `window`/`track_file` fields at all — left untouched, since there's no
+  evidence of what it should contain.
 
 ### Known gaps
 - The beat-detection (librosa) and render (ChatCut composite) steps are run

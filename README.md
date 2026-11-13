@@ -109,6 +109,9 @@ without re-running analysis from scratch.
   `tempo`/`phase`, cut count, and the full `video_adds` list. Edit a plan
   directly to tweak crop offsets or swap a clip's asset id.
 
+No secrets or environment variables are required beyond the gitignored
+`cookie.txt` consumed by `download_clips.sh` (see Install & run above).
+
 ## Layout
 
 ```
