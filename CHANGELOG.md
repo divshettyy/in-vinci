@@ -3,6 +3,26 @@
 All notable changes to in-vinci (beat-synced phonk moto reel maker).
 
 ## [Unreleased]
+### Security
+- Audited for hardcoded secrets/API keys, unsafe shell quoting, `eval` use,
+  and command injection — none found. `download_clips.sh` has no user-supplied
+  filenames/URLs reaching the shell (the clip name -> UUID map is hardcoded)
+  and all variable expansions are quoted.
+- `download_clips.sh`: removed a redundant/stale `-b "chatcut=dummy"` curl
+  flag that was sent alongside the real `-H "cookie: ..."` header — harmless
+  but confusing, and risked a duplicate/malformed `Cookie` header.
+- `.gitignore` hardened: added `.env`/`.env.*` (none currently used by this
+  repo, but guards against an accidental future commit), plus common
+  Python/editor/OS cache noise (`__pycache__/`, `*.pyc`, `.DS_Store`, `*.swp`).
+  `cookie.txt`, `clips/`, and `out/` were already covered.
+
+### Docs
+- README: added a `Requirements` section listing the actual runtime deps
+  (bash/curl, ffmpeg, Python + librosa, opencv-python + scenedetect) and
+  clarified that `download_clips.sh` reads the cookie from `cookie.txt` at
+  runtime rather than ever hardcoding it, and that no other secrets/env vars
+  are required.
+
 ### Fixed
 - `download_clips.sh` now resolves `clips/` and `cookie.txt` relative to the
   script's own location instead of the hardcoded `~/reel-workdir/` path. After
