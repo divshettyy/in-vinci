@@ -35,7 +35,7 @@
    "assetId": "6d4063287d",
    "trackId": "V1",
    "alignTo": "track-end",
-   "durationInFrames": 36,
+   "durationInFrames": 37,
    "sourceStartFromInSeconds": 8.7,
    "decibelAdjustment": -60
   },
@@ -100,7 +100,7 @@
    "assetId": "5a3fb456ee",
    "trackId": "V1",
    "alignTo": "track-end",
-   "durationInFrames": 18,
+   "durationInFrames": 19,
    "sourceStartFromInSeconds": 9.7,
    "decibelAdjustment": -60
   },
@@ -146,7 +146,7 @@
    "assetId": "1dbe673f2a",
    "trackId": "V1",
    "alignTo": "track-end",
-   "durationInFrames": 36,
+   "durationInFrames": 37,
    "sourceStartFromInSeconds": 4.5,
    "decibelAdjustment": -60,
    "width": 1166,
@@ -196,7 +196,7 @@
    "assetId": "190fd81c60",
    "trackId": "V1",
    "alignTo": "track-end",
-   "durationInFrames": 36,
+   "durationInFrames": 33,
    "sourceStartFromInSeconds": 2.0,
    "decibelAdjustment": -60
   }

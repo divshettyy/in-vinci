@@ -59,3 +59,8 @@ jobs:
               sys.exit(1)
           print("All plan/beat JSON files parsed and have required keys.")
           PY
+
+      - name: Beat-sync check (cuts land on beats)
+        run: |
+          python3 tools/validate_plans.py
+          python3 -m unittest discover -s tests

@@ -35,7 +35,7 @@
    "assetId": "6d4063287d",
    "trackId": "V1",
    "alignTo": "track-end",
-   "durationInFrames": 42,
+   "durationInFrames": 41,
    "sourceStartFromInSeconds": 8.7,
    "decibelAdjustment": -60
   },
@@ -109,7 +109,7 @@
    "assetId": "51a7daab59",
    "trackId": "V1",
    "alignTo": "track-end",
-   "durationInFrames": 42,
+   "durationInFrames": 41,
    "sourceStartFromInSeconds": 3.5,
    "decibelAdjustment": -60,
    "fit": "cover"
@@ -168,7 +168,7 @@
    "assetId": "6d4063287d",
    "trackId": "V1",
    "alignTo": "track-end",
-   "durationInFrames": 42,
+   "durationInFrames": 44,
    "sourceStartFromInSeconds": 8.7,
    "decibelAdjustment": -60
   }
