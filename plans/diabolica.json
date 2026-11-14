@@ -52,7 +52,7 @@
    "assetId": "12ef94b147",
    "trackId": "V1",
    "alignTo": "track-end",
-   "durationInFrames": 15,
+   "durationInFrames": 14,
    "sourceStartFromInSeconds": 0.0,
    "decibelAdjustment": -60
   },
@@ -61,7 +61,7 @@
    "assetId": "190fd81c60",
    "trackId": "V1",
    "alignTo": "track-end",
-   "durationInFrames": 29,
+   "durationInFrames": 30,
    "sourceStartFromInSeconds": 2.0,
    "decibelAdjustment": -60
   },
@@ -70,7 +70,7 @@
    "assetId": "fb128c2271",
    "trackId": "V1",
    "alignTo": "track-end",
-   "durationInFrames": 15,
+   "durationInFrames": 14,
    "sourceStartFromInSeconds": 5.5,
    "decibelAdjustment": -60
   },
@@ -79,7 +79,7 @@
    "assetId": "cc7ab74195",
    "trackId": "V1",
    "alignTo": "track-end",
-   "durationInFrames": 29,
+   "durationInFrames": 30,
    "sourceStartFromInSeconds": 8.2,
    "decibelAdjustment": -60,
    "fit": "cover"
@@ -89,7 +89,7 @@
    "assetId": "c9f53905f7",
    "trackId": "V1",
    "alignTo": "track-end",
-   "durationInFrames": 15,
+   "durationInFrames": 14,
    "sourceStartFromInSeconds": 7.0,
    "decibelAdjustment": -60
   },
@@ -203,7 +203,7 @@
    "assetId": "fb128c2271",
    "trackId": "V1",
    "alignTo": "track-end",
-   "durationInFrames": 15,
+   "durationInFrames": 14,
    "sourceStartFromInSeconds": 5.5,
    "decibelAdjustment": -60
   },
@@ -212,7 +212,7 @@
    "assetId": "cc7ab74195",
    "trackId": "V1",
    "alignTo": "track-end",
-   "durationInFrames": 29,
+   "durationInFrames": 30,
    "sourceStartFromInSeconds": 8.2,
    "decibelAdjustment": -60,
    "fit": "cover"
@@ -222,7 +222,7 @@
    "assetId": "c9f53905f7",
    "trackId": "V1",
    "alignTo": "track-end",
-   "durationInFrames": 15,
+   "durationInFrames": 14,
    "sourceStartFromInSeconds": 7.0,
    "decibelAdjustment": -60
   },
@@ -240,7 +240,7 @@
    "assetId": "51a7daab59",
    "trackId": "V1",
    "alignTo": "track-end",
-   "durationInFrames": 29,
+   "durationInFrames": 31,
    "sourceStartFromInSeconds": 3.5,
    "decibelAdjustment": -60,
    "fit": "cover"

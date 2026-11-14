@@ -145,14 +145,19 @@ them as pipeline-demo artifacts, not licensed assets. The source moto clips
 themselves are not committed at all (`clips/` is gitignored) and must be
 supplied by whoever owns/has rights to that footage.
 
+## Tools
+
+- `python3 tools/validate_plans.py` — verifies every cut lands on a beat (≤2 frames) and frame totals/boundaries agree.
+- `python3 tools/retime_plans.py [--check]` — removes cumulative frame-rounding drift (was up to ~100 ms late in a reel) by re-deriving clip lengths from the beat-aligned boundaries.
+
 ## Roadmap
 
 - [ ] Commit the beat-detection and clip-analysis scripts themselves (not
       just their outputs) so the pipeline is fully reproducible from this repo
 - [ ] Swap the ChatCut-cookie flow in `download_clips.sh` for a proper API
       token / OAuth flow
-- [ ] Add a minimal test/CI stub (plan-schema validation, beat-map sanity
-      checks)
+- [x] Add a minimal test/CI stub (plan-schema validation, beat-map sanity
+      checks) — `tools/validate_plans.py` + `tests/`
 - [ ] Parameterize `download_clips.sh`'s project id / asset list instead of
       hardcoding them
 
