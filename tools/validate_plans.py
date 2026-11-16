@@ -17,6 +17,7 @@ import sys
 
 FPS = 30.0
 TOLERANCE_FRAMES = 2
+MIN_CLIP_FRAMES = 4   # shorter than ~130 ms reads as a flicker/glitch, not a cut
 
 
 def check_plan(plan, beats, fps=FPS, tol_frames=TOLERANCE_FRAMES):
@@ -26,6 +27,9 @@ def check_plan(plan, beats, fps=FPS, tol_frames=TOLERANCE_FRAMES):
     durs = [int(a.get("durationInFrames", 0)) for a in adds]
     if any(d <= 0 for d in durs):
         errs.append("clip with non-positive durationInFrames")
+    short = [i + 1 for i, d in enumerate(durs) if 0 < d < MIN_CLIP_FRAMES]
+    if short:
+        errs.append("clip(s) %s shorter than %d frames (flicker)" % (short, MIN_CLIP_FRAMES))
     if plan.get("total_frames") is not None and plan["total_frames"] != sum(durs):
         errs.append("total_frames %s != sum of clip frames %s" % (plan["total_frames"], sum(durs)))
     if plan.get("cut_count") is not None and plan["cut_count"] != len(adds):

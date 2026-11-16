@@ -31,5 +31,33 @@ class Retime(unittest.TestCase):
         self.assertIsNone(r.retime({"video_adds": [{"durationInFrames": 5}]}))
 
 
+class ValidatorNegatives(unittest.TestCase):
+    BEATS = {"beats": [0.0, 0.5, 1.0, 1.5]}
+
+    def plan(self, durs, **kw):
+        p = {"video_adds": [{"durationInFrames": d} for d in durs],
+             "total_frames": sum(durs), "cut_count": len(durs), "phase": 0.0}
+        p.update(kw)
+        return p
+
+    def test_good_plan_passes(self):
+        self.assertEqual(v.check_plan(self.plan([15, 15, 15]), self.BEATS), [])
+
+    def test_off_beat_cut_is_reported(self):
+        errs = v.check_plan(self.plan([20, 10, 15]), self.BEATS)
+        self.assertTrue(any("off the nearest beat" in e for e in errs))
+
+    def test_flicker_clip_is_reported(self):
+        errs = v.check_plan(self.plan([15, 2, 13, 15]), self.BEATS)
+        self.assertTrue(any("flicker" in e for e in errs))
+
+    def test_total_and_count_mismatch(self):
+        errs = v.check_plan(self.plan([15, 15], total_frames=99, cut_count=5), self.BEATS)
+        self.assertEqual(len([e for e in errs if "!=" in e]), 2)
+
+    def test_empty_beat_map(self):
+        self.assertIn("beat map has no beats", v.check_plan(self.plan([15, 15]), {"beats": []}))
+
+
 if __name__ == "__main__":
     unittest.main()
