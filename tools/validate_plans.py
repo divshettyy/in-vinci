@@ -8,7 +8,8 @@ For every plans/<slug>.json that has a plans/<slug>_beats.json sibling it checks
     offset) within TOLERANCE_FRAMES frames -- i.e. the cuts are really beat-synced
 Exit status is non-zero on any problem, so it can gate CI.
 
-Usage: python3 tools/validate_plans.py [plans_dir]
+Usage: python3 tools/validate_plans.py [--report] [plans_dir]
+  --report  also print mean/max cut-to-beat offset in ms per plan
 """
 import glob
 import json
@@ -57,7 +58,37 @@ def check_plan(plan, beats, fps=FPS, tol_frames=TOLERANCE_FRAMES):
     return errs
 
 
+def cut_offsets_ms(plan, beats, fps=FPS):
+    """Signed offset (ms) of each internal cut from its nearest beat.
+
+    Negative = the cut lands early, positive = late. Handy for judging how
+    tight a plan is beyond the pass/fail tolerance used by check_plan().
+    """
+    durs = [int(a.get("durationInFrames", 0)) for a in plan.get("video_adds", [])]
+    offset = float((plan.get("audio_add") or {}).get("sourceStartFromInSeconds", plan.get("phase", 0.0)) or 0.0)
+    beat_times = [b - offset for b in beats.get("beats", [])]
+    if not beat_times:
+        return []
+    out, acc = [], 0
+    for d in durs[:-1]:
+        acc += d
+        c = acc / fps
+        nearest = min(beat_times, key=lambda b: abs(b - c))
+        out.append(round((c - nearest) * 1000.0, 1))
+    return out
+
+
+def summarize_offsets(offs):
+    """(mean abs ms, max abs ms) for a list from cut_offsets_ms; (0, 0) if empty."""
+    if not offs:
+        return 0.0, 0.0
+    a = [abs(x) for x in offs]
+    return round(sum(a) / len(a), 1), max(a)
+
+
 def main(argv):
+    report = "--report" in argv
+    argv = [a for a in argv if a != "--report"]
     pdir = argv[1] if len(argv) > 1 else os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "plans")
     bad = 0
     for path in sorted(glob.glob(os.path.join(pdir, "*.json"))):
@@ -73,6 +104,9 @@ def main(argv):
             beats = json.load(f)
         errs = check_plan(plan, beats)
         print("%s %s" % ("FAIL" if errs else "ok  ", os.path.basename(path)))
+        if report:
+            mean_ms, max_ms = summarize_offsets(cut_offsets_ms(plan, beats))
+            print("      cut offset from beat: mean %.1f ms, max %.1f ms" % (mean_ms, max_ms))
         for e in errs:
             print("      - " + e)
         bad += bool(errs)
