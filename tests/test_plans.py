@@ -58,6 +58,25 @@ class ValidatorNegatives(unittest.TestCase):
     def test_empty_beat_map(self):
         self.assertIn("beat map has no beats", v.check_plan(self.plan([15, 15]), {"beats": []}))
 
+class OffsetReport(unittest.TestCase):
+    PLAN = {"video_adds": [{"durationInFrames": 30}, {"durationInFrames": 31}, {"durationInFrames": 30}]}
+
+    def test_signed_offsets(self):
+        # cuts at 1.000s and 2.0333s; beats at 1.0 and 2.0
+        offs = v.cut_offsets_ms(self.PLAN, {"beats": [1.0, 2.0]})
+        self.assertEqual(offs, [0.0, 33.3])
+
+    def test_audio_offset_is_applied(self):
+        plan = dict(self.PLAN, audio_add={"sourceStartFromInSeconds": 5.0})
+        self.assertEqual(v.cut_offsets_ms(plan, {"beats": [6.0, 7.0]}), [0.0, 33.3])
+
+    def test_no_beats_gives_empty(self):
+        self.assertEqual(v.cut_offsets_ms(self.PLAN, {"beats": []}), [])
+
+    def test_summarize(self):
+        self.assertEqual(v.summarize_offsets([-10.0, 20.0]), (15.0, 20.0))
+        self.assertEqual(v.summarize_offsets([]), (0.0, 0.0))
+
 
 if __name__ == "__main__":
     unittest.main()
