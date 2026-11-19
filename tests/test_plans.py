@@ -80,3 +80,23 @@ class OffsetReport(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class Pacing(unittest.TestCase):
+    @staticmethod
+    def plan(durs):
+        return {"video_adds": [{"durationInFrames": d} for d in durs]}
+
+    def test_accelerating(self):
+        p = v.pacing(self.plan([30, 30, 20, 10, 8, 6]))
+        self.assertTrue(p["accelerates"]); self.assertFalse(p["monotone"])
+        self.assertEqual((p["clips"], p["min_s"], p["max_s"]), (6, 0.2, 1.0))
+
+    def test_monotone_and_decelerating(self):
+        p = v.pacing(self.plan([15, 15, 15, 15]))
+        self.assertTrue(p["monotone"]); self.assertFalse(p["accelerates"])
+        self.assertFalse(v.pacing(self.plan([6, 8, 20, 30]))["accelerates"])
+
+    def test_too_few_clips(self):
+        self.assertIsNone(v.pacing(self.plan([30])))
+        self.assertIsNone(v.pacing({}))

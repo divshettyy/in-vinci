@@ -3,6 +3,9 @@
 All notable changes to in-vinci (beat-synced phonk moto reel maker).
 
 ## [Unreleased]
+### Added
+- `validate_plans.py --report` now prints cut pacing per plan (mean/min/max clip length, accelerating-into-drop flag, monotone-rhythm flag) via new `pacing()`; 3 new tests.
+
 ### Fixed
 - Cut timing: per-clip frame rounding accumulated up to ~3 frames (~100 ms) of drift by the end of each reel, so late cuts missed the beat. All 8 plans re-timed from their beat-aligned `boundaries_s` (`tools/retime_plans.py`); total lengths unchanged.
 ### Added
