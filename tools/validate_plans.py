@@ -9,7 +9,7 @@ For every plans/<slug>.json that has a plans/<slug>_beats.json sibling it checks
 Exit status is non-zero on any problem, so it can gate CI.
 
 Usage: python3 tools/validate_plans.py [--report] [plans_dir]
-  --report  also print mean/max cut-to-beat offset in ms per plan
+  --report  also print mean/max cut-to-beat offset in ms and cut pacing per plan
 """
 import glob
 import json
@@ -86,6 +86,28 @@ def summarize_offsets(offs):
     return round(sum(a) / len(a), 1), max(a)
 
 
+def pacing(plan, fps=FPS):
+    """Cut-rhythm stats for a plan: mean/min/max clip length (s), whether cuts
+    accelerate toward the end (second-half mean clip shorter than first half --
+    the usual phonk build into the drop), and whether every clip is the same
+    length (monotone pacing). Returns None for plans with < 2 clips."""
+    durs = [int(a.get("durationInFrames", 0)) for a in plan.get("video_adds", [])]
+    durs = [d for d in durs if d > 0]
+    if len(durs) < 2:
+        return None
+    h = len(durs) // 2
+    first, second = durs[:h], durs[len(durs) - h:]
+    f_mean, s_mean = sum(first) / len(first), sum(second) / len(second)
+    return {
+        "clips": len(durs),
+        "mean_s": round(sum(durs) / len(durs) / fps, 2),
+        "min_s": round(min(durs) / fps, 2),
+        "max_s": round(max(durs) / fps, 2),
+        "accelerates": s_mean < f_mean,
+        "monotone": len(set(durs)) == 1,
+    }
+
+
 def main(argv):
     report = "--report" in argv
     argv = [a for a in argv if a != "--report"]
@@ -107,6 +129,12 @@ def main(argv):
         if report:
             mean_ms, max_ms = summarize_offsets(cut_offsets_ms(plan, beats))
             print("      cut offset from beat: mean %.1f ms, max %.1f ms" % (mean_ms, max_ms))
+            pc = pacing(plan)
+            if pc:
+                print("      pacing: %d clips, %.2fs mean (%.2f-%.2fs), %s%s" % (
+                    pc["clips"], pc["mean_s"], pc["min_s"], pc["max_s"],
+                    "accelerating" if pc["accelerates"] else "not accelerating",
+                    ", MONOTONE" if pc["monotone"] else ""))
         for e in errs:
             print("      - " + e)
         bad += bool(errs)
