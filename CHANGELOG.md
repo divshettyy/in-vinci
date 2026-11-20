@@ -70,6 +70,17 @@ All notable changes to in-vinci (beat-synced phonk moto reel maker).
   check; the ChatCut project id and 17 clip asset UUIDs are hardcoded in
   `download_clips.sh` rather than configurable.
 
+## [2026-11-20] — discoverability and tooling pass (no code behaviour change)
+### Added
+- Dependabot configuration for weekly grouped GitHub Actions updates (the pipeline
+  is stdlib-only, so there is no Python manifest for Dependabot to track).
+- `.editorconfig` so every contributor shares the same indentation and line endings.
+### Notes
+- The 23 MB `Reel5_Phonk_v2.mp4` sample and the 384 KB `track_santafe_19s.mp3` are
+  committed to the repository. They inflate every clone; consider moving them to a
+  release asset or Git LFS. Removing them from history is a rewrite, so it was left
+  for a deliberate decision rather than done automatically here.
+
 ## [0.1.0] — initial import
 - Beat-synced phonk moto reel pipeline: librosa beat detection, 19s hook
   windows, source-clip profiling, beat-aligned 9:16 cut plans, final render.
