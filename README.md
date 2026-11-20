@@ -1,5 +1,9 @@
 # in-vinci — beat-synced phonk moto reel maker
 
+[![Validate](https://github.com/divshettyy/in-vinci/actions/workflows/validate.yml/badge.svg)](https://github.com/divshettyy/in-vinci/actions/workflows/validate.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
+
 Turns slowed-phonk tracks + vertical moto footage into 9:16 Instagram reels,
 with every cut landing on a detected beat.
 
