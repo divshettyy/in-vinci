@@ -32,3 +32,10 @@ node_modules/
 # large sample/working media (keep committed samples explicit; ignore scratch dumps)
 *.mp4.tmp
 *.mp3.tmp
+
+# media not shipped (bloat + third-party copyright) — supply locally
+*.mp4
+*.mp3
+*.mov
+*.wav
+windows/

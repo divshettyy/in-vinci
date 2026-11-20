@@ -89,3 +89,15 @@ All notable changes to in-vinci (beat-synced phonk moto reel maker).
 - `download_clips.sh` helper to re-fetch the 17 source clips from ChatCut.
 - Sample render committed as `Reel5_Phonk_v2.mp4`.
 - Repo renamed from `reel-workdir` to `in-vinci`.
+
+## 2026-11-20 — Media purged from history
+
+Removed all audio and video binaries from the entire git history with
+`git-filter-repo` (23 MB `Reel5_Phonk_v2.mp4` plus nine `*_19s.mp3` phonk-track
+windows). These were sample artifacts combining third-party copyrighted slowed-
+phonk tracks with rendered output — they bloated every clone to ~26 MB and were
+not safe to ship in a public repo. The pack is now ~280 KB. Added `*.mp4`,
+`*.mp3`, `*.mov`, `*.wav`, and `windows/` to `.gitignore`, and rewrote the
+README "Media & copyright" section to state that no third-party media is
+committed and must be supplied locally. Pipeline code and tests are unaffected
+(they read `plans/*.json`, never the media binaries).

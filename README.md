@@ -139,15 +139,12 @@ before a fresh render. See `CHANGELOG.md` for history.
 
 ## Media & copyright
 
-The committed audio samples (`track_santafe_19s.mp3`, `windows/*.mp3`) are
-short (~19s) excerpts of third-party slowed-phonk tracks, used here only to
-demonstrate the beat-detection/cut-plan pipeline. The sample render
-(`Reel5_Phonk_v2.mp4`) likewise combines a licensed/third-party track with
-footage from the source clip pool. **These are not released under the MIT
-license below** and should not be redistributed as standalone media — treat
-them as pipeline-demo artifacts, not licensed assets. The source moto clips
-themselves are not committed at all (`clips/` is gitignored) and must be
-supplied by whoever owns/has rights to that footage.
+Audio and video media are **not committed** to this repo. The pipeline expects
+third-party slowed-phonk tracks (referenced by name in `plans/*.json`) and moto
+footage to be supplied locally by whoever owns or has rights to them. Audio
+windows (`windows/*.mp3`), rendered reels (`*.mp4`), and the source clip pool
+(`clips/`) are all gitignored. None of that third-party media is released under
+the MIT license below — supply your own tracks and footage to run the pipeline.
 
 ## Tools
 
