@@ -77,6 +77,21 @@ class OffsetReport(unittest.TestCase):
         self.assertEqual(v.summarize_offsets([-10.0, 20.0]), (15.0, 20.0))
         self.assertEqual(v.summarize_offsets([]), (0.0, 0.0))
 
+class DropAlignment(unittest.TestCase):
+    PLAN = {"audio_add": {"sourceStartFromInSeconds": 1.0},
+            "video_adds": [{"durationInFrames": 30}] * 4}   # cuts at 1s, 2s, 3s
+
+    def test_cut_on_drop_is_zero(self):
+        self.assertEqual(v.drop_alignment_ms(self.PLAN, {"drop_time": 3.0}), 0.0)  # 3.0-1.0=2.0s
+
+    def test_signed_offset(self):
+        # drop at plan-time 2.1s -> nearest cut 2.0s is 100 ms early
+        self.assertEqual(v.drop_alignment_ms(self.PLAN, {"drop_time": 3.1}), -100.0)
+
+    def test_missing_drop_or_cuts(self):
+        self.assertIsNone(v.drop_alignment_ms(self.PLAN, {}))
+        self.assertIsNone(v.drop_alignment_ms({"video_adds": [{"durationInFrames": 30}]}, {"drop_time": 1}))
+
 
 if __name__ == "__main__":
     unittest.main()

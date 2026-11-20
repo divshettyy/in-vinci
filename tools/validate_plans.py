@@ -108,6 +108,26 @@ def pacing(plan, fps=FPS):
     }
 
 
+def drop_alignment_ms(plan, beats, fps=FPS):
+    """Signed offset (ms) from the beat map's drop_time to the nearest internal
+    cut, in plan time. A phonk edit should hit a cut ON the drop; None when the
+    beat map has no drop_time or the plan has no internal cuts."""
+    drop = beats.get("drop_time")
+    if drop is None:
+        return None
+    durs = [int(a.get("durationInFrames", 0)) for a in plan.get("video_adds", [])]
+    offset = float((plan.get("audio_add") or {}).get("sourceStartFromInSeconds", plan.get("phase", 0.0)) or 0.0)
+    cuts, acc = [], 0
+    for d in durs[:-1]:
+        acc += d
+        cuts.append(acc / fps)
+    if not cuts:
+        return None
+    target = float(drop) - offset
+    nearest = min(cuts, key=lambda c: abs(c - target))
+    return round((nearest - target) * 1000.0, 1)
+
+
 def main(argv):
     report = "--report" in argv
     argv = [a for a in argv if a != "--report"]
@@ -129,6 +149,10 @@ def main(argv):
         if report:
             mean_ms, max_ms = summarize_offsets(cut_offsets_ms(plan, beats))
             print("      cut offset from beat: mean %.1f ms, max %.1f ms" % (mean_ms, max_ms))
+            da = drop_alignment_ms(plan, beats)
+            if da is not None:
+                print("      drop: nearest cut %+.1f ms from drop_time%s" % (
+                    da, "" if abs(da) <= 1000 * TOLERANCE_FRAMES / FPS else "  (NO CUT ON THE DROP)"))
             pc = pacing(plan)
             if pc:
                 print("      pacing: %d clips, %.2fs mean (%.2f-%.2fs), %s%s" % (
