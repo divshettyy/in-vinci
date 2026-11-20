@@ -1,0 +1,11 @@
+version: 2
+updates:
+  # No Python dependency manifest in this repo (the pipeline is stdlib-only);
+  # keep GitHub Actions up to date.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      github-actions:
+        patterns: ["*"]
