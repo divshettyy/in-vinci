@@ -3,6 +3,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "tools"))
 import validate_plans as v
 import retime_plans as r
+import align_drop as ad
 
 
 class CommittedPlans(unittest.TestCase):
@@ -91,6 +92,33 @@ class DropAlignment(unittest.TestCase):
     def test_missing_drop_or_cuts(self):
         self.assertIsNone(v.drop_alignment_ms(self.PLAN, {}))
         self.assertIsNone(v.drop_alignment_ms({"video_adds": [{"durationInFrames": 30}]}, {"drop_time": 1}))
+
+
+class AlignDrop(unittest.TestCase):
+    def _plan(self, durs):
+        return {"phase": 0.0, "video_adds": [{"durationInFrames": d} for d in durs],
+                "boundaries_s": [0.0] + [round(sum(durs[:i + 1]) / 30, 3) for i in range(len(durs) - 1)] + [round(sum(durs) / 30, 3)]}
+
+    def test_moves_nearest_cut_onto_drop_beat_preserving_total(self):
+        plan = self._plan([30, 30, 30, 30])           # cuts at frames 30, 60, 90
+        beats = {"beats": [1.0, 2.0, 2.4, 3.0], "drop_time": 2.4}   # beat @ frame 72
+        new, info = ad.align(plan, beats)
+        self.assertEqual(info["to"], 72)
+        self.assertEqual(sum(new), 120)
+        self.assertEqual(new, [30, 42, 18, 30])
+        ad.apply(plan, new)
+        self.assertEqual(plan["boundaries_s"][2], 2.4)
+
+    def test_noop_when_already_on_drop_or_too_far(self):
+        plan = self._plan([30, 30, 30, 30])
+        self.assertIsNone(ad.align(plan, {"beats": [2.0], "drop_time": 2.0}))
+        self.assertIsNone(ad.align(plan, {"beats": [3.9], "drop_time": 3.9}, max_shift=5))
+        self.assertIsNone(ad.align(plan, {"beats": [2.0]}))
+
+    def test_refuses_to_create_flicker_clip(self):
+        plan = self._plan([30, 5, 30])                # cuts at 30, 35
+        beat = 32 / 30.0                              # moving cut 1 -> 32 leaves a 3-frame clip
+        self.assertIsNone(ad.align(plan, {"beats": [beat], "drop_time": beat}))
 
 
 if __name__ == "__main__":

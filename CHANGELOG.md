@@ -4,6 +4,8 @@ All notable changes to in-vinci (beat-synced phonk moto reel maker).
 
 ## [Unreleased]
 ### Added
+- `tools/align_drop.py`: moves the cut nearest the beat drop onto the beat nearest the drop (trading frames between the two neighbouring clips; total length and all other cuts unchanged; never creates a flicker clip). Applied to `funkcriminal` (drop offset 539 ms -> 27 ms) and `semcontrole` (478 ms -> 155 ms). `--check` mode for CI; tests added.
+### Added
 - `validate_plans.py --report` now prints `drop_alignment_ms()`: signed offset from the beat map's `drop_time` to the nearest cut, flagging plans with no cut on the drop (currently 5 of 8). Report-only; 3 new tests.
 - `validate_plans.py --report` now prints cut pacing per plan (mean/min/max clip length, accelerating-into-drop flag, monotone-rhythm flag) via new `pacing()`; 3 new tests.
 
