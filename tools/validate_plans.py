@@ -128,6 +128,27 @@ def drop_alignment_ms(plan, beats, fps=FPS):
     return round((nearest - target) * 1000.0, 1)
 
 
+def drop_beat_alignment_ms(plan, beats, fps=FPS):
+    """(drop_to_beat_ms, cut_to_beat_ms): how far drop_time sits from the nearest
+    beat-grid point, and how far the nearest internal cut is from THAT beat.
+    The drop usually falls between grid beats, so the realistic target for a
+    hard cut is the nearest beat. None when no drop_time/beats/cuts."""
+    drop = beats.get("drop_time")
+    offset = float((plan.get("audio_add") or {}).get("sourceStartFromInSeconds", plan.get("phase", 0.0)) or 0.0)
+    bts = [b - offset for b in beats.get("beats", []) if b - offset > 0]
+    durs = [int(a.get("durationInFrames", 0)) for a in plan.get("video_adds", [])]
+    if drop is None or not bts or len(durs) < 2:
+        return None
+    target = float(drop) - offset
+    beat = min(bts, key=lambda b: abs(b - target))
+    cuts, acc = [], 0
+    for d in durs[:-1]:
+        acc += d
+        cuts.append(acc / fps)
+    c = min(cuts, key=lambda x: abs(x - beat))
+    return round((beat - target) * 1000.0, 1), round((c - beat) * 1000.0, 1)
+
+
 def main(argv):
     report = "--report" in argv
     argv = [a for a in argv if a != "--report"]
@@ -151,8 +172,13 @@ def main(argv):
             print("      cut offset from beat: mean %.1f ms, max %.1f ms" % (mean_ms, max_ms))
             da = drop_alignment_ms(plan, beats)
             if da is not None:
-                print("      drop: nearest cut %+.1f ms from drop_time%s" % (
-                    da, "" if abs(da) <= 1000 * TOLERANCE_FRAMES / FPS else "  (NO CUT ON THE DROP)"))
+                tol = 1000 * TOLERANCE_FRAMES / FPS
+                ba = drop_beat_alignment_ms(plan, beats)
+                flag = ""
+                if abs(da) > tol:
+                    flag = ("  (cut on the drop beat, drop is %+.0f ms off-grid)" % ba[0]
+                            if ba and abs(ba[1]) <= tol else "  (NO CUT ON THE DROP)")
+                print("      drop: nearest cut %+.1f ms from drop_time%s" % (da, flag))
             pc = pacing(plan)
             if pc:
                 print("      pacing: %d clips, %.2fs mean (%.2f-%.2fs), %s%s" % (

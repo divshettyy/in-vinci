@@ -121,6 +121,20 @@ class AlignDrop(unittest.TestCase):
         self.assertIsNone(ad.align(plan, {"beats": [beat], "drop_time": beat}))
 
 
+class DropBeatAlignment(unittest.TestCase):
+    PLAN = {"audio_add": {"sourceStartFromInSeconds": 1.0},
+            "video_adds": [{"durationInFrames": 30}] * 4}   # cuts at 1s, 2s, 3s
+
+    def test_cut_on_nearest_beat(self):
+        # drop at plan-time 2.12s; nearest beat 2.0s (-120 ms); cut sits on it
+        r = v.drop_beat_alignment_ms(self.PLAN, {"drop_time": 3.12, "beats": [2.0, 3.0, 4.0]})
+        self.assertEqual(r, (-120.0, 0.0))
+
+    def test_missing(self):
+        self.assertIsNone(v.drop_beat_alignment_ms(self.PLAN, {"drop_time": 3.0}))
+        self.assertIsNone(v.drop_beat_alignment_ms(self.PLAN, {"beats": [1.0]}))
+
+
 if __name__ == "__main__":
     unittest.main()
 
