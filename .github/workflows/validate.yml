@@ -63,4 +63,5 @@ jobs:
       - name: Beat-sync check (cuts land on beats)
         run: |
           python3 tools/validate_plans.py
+          python3 tools/snap_drop.py --check
           python3 -m unittest discover -s tests

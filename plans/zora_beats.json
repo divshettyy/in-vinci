@@ -38,5 +38,6 @@
   "source": "librosa",
   "duration": 19.0,
   "tempo_raw": 103.36,
-  "drop_time": 3.111
+  "drop_time": 3.111,
+  "drop_time_beat": 2.995
 }

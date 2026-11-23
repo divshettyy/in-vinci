@@ -3,6 +3,8 @@
 All notable changes to in-vinci (beat-synced phonk moto reel maker).
 
 ## [Unreleased]
+### Added
+- `tools/snap_drop.py`: adds a non-destructive `drop_time_beat` (nearest grid beat) to every beat map, so downstream cutters target a beat that a hard cut can actually land on instead of the raw detector onset (up to 348 ms off). `--check` mode; tests added.
 ### Fixed
 - `validate_plans.py --report` no longer cries "NO CUT ON THE DROP" for plans whose cut already sits on the beat nearest the drop (the drop rarely lands exactly on the grid). New `drop_beat_alignment_ms()` reports how far `drop_time` is off-grid and the cut-to-beat offset; real misses are still flagged. Finding: four plans have `drop_time` 116–348 ms off the beat grid, suggesting the drop detector (not the cuts) needs tightening. 2 new tests.
 ### Added

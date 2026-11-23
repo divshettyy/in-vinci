@@ -4,6 +4,7 @@ sys.path.insert(0, os.path.join(ROOT, "tools"))
 import validate_plans as v
 import retime_plans as r
 import align_drop as ad
+import snap_drop as sd
 
 
 class CommittedPlans(unittest.TestCase):
@@ -13,6 +14,21 @@ class CommittedPlans(unittest.TestCase):
                 continue
             plan = json.load(open(p)); beats = json.load(open(p[:-5] + "_beats.json"))
             self.assertEqual(v.check_plan(plan, beats), [], os.path.basename(p))
+
+
+class SnapDrop(unittest.TestCase):
+    def test_snaps_to_nearest_beat(self):
+        self.assertEqual(sd.snap({"drop_time": 2.6, "beats": [1.0, 2.0, 3.0]}), 3.0)
+        self.assertEqual(sd.snap({"drop_time": 2.4, "beats": [1.0, 2.0, 3.0]}), 2.0)
+
+    def test_none_when_missing(self):
+        self.assertIsNone(sd.snap({"beats": [1.0]}))
+        self.assertIsNone(sd.snap({"drop_time": 1.0, "beats": []}))
+
+    def test_committed_maps_are_snapped(self):
+        for p in glob.glob(os.path.join(ROOT, "plans", "*_beats.json")):
+            b = json.load(open(p))
+            self.assertEqual(b.get("drop_time_beat"), sd.snap(b), os.path.basename(p))
 
 
 class Retime(unittest.TestCase):
