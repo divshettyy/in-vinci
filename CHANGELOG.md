@@ -4,6 +4,8 @@ All notable changes to in-vinci (beat-synced phonk moto reel maker).
 
 ## [Unreleased]
 ### Added
+- `tools/export_ffmpeg.py`: local ffmpeg render of any cut plan (trim + 9:16 scale/crop + concat + track window audio with fade-out), no ChatCut render needed. Resolves plan asset ids via `download_clips.sh`; prints a runnable script or `--run`s it. Falls back to `windows/<slug>_19s.mp3` when a plan has no `window`. 4 tests (every plan resolves).
+### Added
 - `tools/preview_timeline.py`: renders a self-contained HTML/SVG timeline of every plan (clips, beat grid, drop marker, per-cut beat offset coloured green/red) so beat-sync can be checked by eye without rendering. Tests added.
 ### Added
 - `tools/snap_drop.py`: adds a non-destructive `drop_time_beat` (nearest grid beat) to every beat map, so downstream cutters target a beat that a hard cut can actually land on instead of the raw detector onset (up to 348 ms off). `--check` mode; tests added.
