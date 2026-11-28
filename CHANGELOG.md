@@ -3,6 +3,20 @@
 All notable changes to in-vinci (beat-synced phonk moto reel maker).
 
 ## [Unreleased]
+### Added (2026-11-28)
+- `engine/` now carries `reel_engine.py`, `contact_sheet.py` and the reel-builder `SKILL.md`
+  (previously only referenced as external tooling).
+- `reel_engine.py plan` flags ported from a friend's ride-reel pipeline notes:
+  `--claims` (no source range reused across a set of reels), `--ending loop|fade`
+  (planned fade-out ending, recorded in `plan.json`), `--no-zoom` (suppress `punch_zoom`).
+  Defaults unchanged.
+- `engine/contact_sheet.py`: timestamped tiled JPEG sheets for footage and draft review.
+- `docs/review-and-delivery-practices.md`: what was adopted, what was left out and why.
+### Validated
+- Default plan output byte-identical in `cuts` to the previous engine on `track_1`.
+- With `--claims`, two 12 s plans from the 17-clip pool overlapped 0 source ranges (24 without
+  it); `--no-zoom` produced no `punch_zoom`; `--ending fade` skipped the loop swap. Contact sheet
+  rendered and read on `Reel5_Phonk_v2.mp4`.
 ### Added
 - `tools/export_ffmpeg.py`: local ffmpeg render of any cut plan (trim + 9:16 scale/crop + concat + track window audio with fade-out), no ChatCut render needed. Resolves plan asset ids via `download_clips.sh`; prints a runnable script or `--run`s it. Falls back to `windows/<slug>_19s.mp3` when a plan has no `window`. 4 tests (every plan resolves).
 ### Added
